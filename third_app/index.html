@@ -1,0 +1,59 @@
+<head>
+	<script src="https://fb.me/react-15.0.1.js"></script>
+	<script src="https://fb.me/react-dom-15.0.1.js"></script>
+	<script src="https://fb.me/JSXTransformer-0.12.2.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+
+<body>
+	<div class="container">	
+		<div class="row">
+			<div class="col-sm-5 target">
+			</div>
+		</div>
+	</div>
+
+</body>
+
+<script type="text/jsx">
+	var Badge = React.createClass({
+		//in order to dynamically render elements use this.props
+		render: function() {
+			return <button className="btn btn-primary" type="button">
+  			{this.props.title} <span className="badge">{this.props.number}</span>
+			</button>
+		}
+	});
+
+	var Thumbnail = React.createClass({
+		render: function() {
+			//return html that displays our thumbnail component
+			return <div className="thumbnail">
+     		<img src={this.props.imageUrl}/>
+      		<div className="caption">
+        		<h3>{this.props.header}</h3>
+        		<p>{this.props.description}</p>
+        		<p>
+        			<Badge title={this.props.title} number={this.props.number} />
+        		</p>
+      		</div>
+   		</div>
+		}
+	});
+
+	//creating options object
+	var options = {
+		title: 'See Tutorial',
+		number: '32',
+		header: 'Learn React',
+		description: 'React is fantastic new library for making fast dynamic pages.',
+		imageUrl: 'https://s3.amazonaws.com/media-p.slid.es/uploads/alexanderfarennikov/images/1198519/reactjs.png'
+
+	};
+
+//pass options to element
+	var element = React.createElement(Thumbnail, options);
+
+//after class is rendered, place element in body
+	ReactDOM.render(element, document.querySelector('.target'));
+</script>
